@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th>agency ID</th>
+                    <th> date/time</th>
+                    <th> service ID</th>
+                    <th>Type</th>
+                    <th>cusomter name</th>
+                    <th>contact number</th>
+                    <th>compain</th>
+                    <th>operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                <tr>
+                    <td>USER0001</td>
+                    <td>{{service.timestamp}}</td>
+                    <td>{{service.sid}}</td>
+                    <td>{{service.service_type}}</td>
+                    <td>{{service.customer_id.name}}</td>
+                    <td>{{service.customer_id.contact_number}}</td>
+                    <td>{{service.complain}}</td>
+                    <td> <a href="{% url 'main:tbb' sid=service.sid%}">dealwith</a> </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

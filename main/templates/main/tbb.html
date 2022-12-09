@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block csslinks %}
+    <link rel="stylesheet" href="{% static 'css/tbb.css' %}">
+{% endblock csslinks %}
+
+{% block content %}
+
+
+<!-- SPINNER -->
+<div class="screen-box2"><div class="loader"></div></div>
+
+<!-- POPUP WINDOW TO ADD SEARCH FOR PRODUCT FORM SERVER -->
+<div class="screen-box">
+    <div class="center-container">
+        <div class="content">
+            <div class="form-area">
+                <div class="flex">
+
+                    <div class="wrapper">
+                        <input type="text" id="searchinput" autocomplete="off" placeholder="partcode/model number/description">
+
+                        <!-- FILTERED PRODUCT LIST BOX  -->
+                        <div class="autocomplete-box"></div>
+                    </div> 
+
+                    <!-- POPUP WINDOW BUTTON AREA -->            
+                    <div class="button-area">
+                        <button id="popWindowSelectBtn" class="simple-btn">select</button>
+                        <button id="popWindowCancelBtn" class="simple-btn">cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- START SERVICE INFO AREA -->
+<div class="container">
+
+    <!-- SERVICE DETAILS TABLE -->
+    <table class="detail-table">
+        <caption>*Service Details</caption>
+        <thead>
+            <tr>
+                <th>service ID</th>
+                <th>service datetime</th>
+                <th>service type</th>
+                <th>complain</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>{{service.sid}}</td>
+            <td>{{service.timestamp}}</td>
+            <td>{{service.service_type}}</td>
+            <td>{{service.complain}}</td>
+        </tbody>
+    </table>
+
+    <!-- CUSTOMER DETAILS TABLE -->
+    <table class="detail-table">
+        <caption>*Customer Details</caption>
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Phone number</th>
+                <th>service address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>{{service.customer_id.name}}</td>
+            <td>{{service.customer_id.contact_number}}</td>
+            <td>{{service.customer_id.address}},{{service.customer_id.city}},{{service.customer_id.State}},{{service.customer_id.pincode}} </td>
+        </tbody>
+    </table>
+</div>
+<!-- END SERVICE INFO AREA -->
+
+<!-- FORM CONTAINER -->
+<div class="container">
+
+<!-- MAIN FORM ==== FOR SETTING ENIGNEER AND MAKING ENGINEER BAG -->
+    <form id="productForm" action="" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <table width="100%" class="form-table">
+                <!-- iNSPECTION METHOD -->
+                <tr>
+                    <th>
+                        Inspection Method :
+                    </th>
+                    <td>
+                        <div>    
+                            <select name="inspectiontype" id="inspectiontype">
+                                <option value="repair"> Repair </option>
+                                <option value="sell"> Sell </option>
+                                <option value="assign engineer"> Assign Engineer </option>
+                                <option value="dispatch"> Dispatch </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- SELECT ENGINEER  -->
+                <tr>
+                    <th>
+                        Assign Engineer :
+                    </th>
+                    <td>
+                        <div>    
+                            <select name="engineer" id="engineer">
+                                {% for eng in engineerlist %}
+                                    {% if eng.is_available == True %}
+                                        <option value="{{eng.engineer_id}}">{{eng.name}} | Avaiable </option>
+                                    {% endif %}
+                                    {% if eng.is_available == False %}
+                                        <option value="{{eng.engineer_id}}" disabled>{{eng.name}} | Working </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ADD PRODUCT -->
+                <tr>
+                    <th>Add Product :</th>
+                    <td style="padding:15px 5px;">
+                            <!-- =============================== partcode ============================== -->
+                        <label for="partcode" >partcode/SN</label>
+                        <input type="text" name="partcode" id="partcode" autocomplete="off" >
+                            <!-- ========================= description text area ============================== -->
+                        <label for="decription">description</label>
+                        <input type="text" name="description" id="description" style="width:300px;"readonly>
+                             <!-- ========================== availablequantity ============================== -->
+                        <label for="availablequantity">Avaiable Quantity</label>
+                        <input type="text" name="availablequantity" id="availablequantity" style="width:60px;"readonly>
+                             <!-- ============================ out quantity ============================== -->           
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" min="1" style="width:60px;">
+
+                        <button type="submit" id="formAddBtn" name="formAddBtn" class="simple-btn">Add</button>
+                    </td>
+                </tr>
+
+                <!-- DEMAND/PRODUCT LIST -->
+                <tr>
+                    <th>Product List :</th>
+                    <td>
+                        <div class="container" style="overflow-y:auto; max-height:300px;max-width:1500px;" >
+                            <table width="100%" class='list_table'>
+                                <thead>
+                                    <tr>
+                                        <th> PN </th>
+                                        <th> serial number</th>
+                                        <th> model number</th>
+                                        <th>description</th>
+                                        <th>price</th>
+                                        <th>quantity</th>
+                                        <th>total</th>
+                                        <th>operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="EngineerBagList">
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <button type="submit" name="determine" id="determineBtn" class="btn">determine</button>
+    </form>
+
+</div>
+
+{% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const msg = "{{message}}";
+        swal("Successfull!",msg,"success");
+    </script>
+    {% endfor %}
+
+{% endblock content %}
+
+{% block jslinks %}
+    <script src="{% static 'js/tbb.js' %}"></script>
+{% endblock jslinks %}

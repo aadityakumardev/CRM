@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslinks %} 
+    <link rel="stylesheet" href="{% static 'css/newservice.css' %}">
+ {% endblock csslinks %}
+{% block content %}
+    
+    <div class="screen-box">
+        <div class="centre-container">
+            <div class="content">
+                <div>
+                    <span>Created Successfully !</span>
+                </div>
+                <div>
+                    <span>Service Id : RHJS46446FDG</span>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="container">
+            <table>
+                <caption>*Customer Details</caption>
+                <tbody>
+                    <tr>
+                        <th> {{form.name.label_tag}} </th>
+                        <td> {{form.name}} {{form.name.errors}}</td>
+
+                        <th> {{form.email_id.label_tag}} </th>
+                        <td> {{form.email_id}} </td>
+                    </tr>
+                    <tr>
+                        <th> {{form.contact_number.label_tag}} </th>
+                        <td> {{form.contact_number}} </td>
+                        <th> {{form.alternate_number.label_tag}} </th>
+                        <td> {{form.alternate_number}} </td>
+                    </tr>
+                    <tr>
+                        <th> {{form.gender.label_tag}} </th>
+                        <td> {{form.gender}} </td>
+                        <th> {{form.appelation.label_tag}} </th>
+                        <td> {{form.appelation}} </td>
+                    </tr>
+                    <tr>
+                        <th> {{form.address.label_tag}} </th>
+                        <td> {{form.address}} </td>
+                    </tr>
+                    <tr>   
+                        <th> {{form.city.label_tag}} </th>
+                        <td> {{form.city}} </td>
+                        <th> {{form.State.label_tag}} </th>
+                        <td> {{form.State}} </td>
+                        <th> {{form.pincode.label_tag}} </th>
+                        <td> {{form.pincode}} </td>
+                    </tr>
+                    <tr>   
+                        <th> {{form.complain.label_tag}} </th>
+                        <td> {{form.complain}} </td>
+                    </tr>
+                    <tr>
+                        <th> {{form.remark.label_tag}} </th>
+                        <td> {{form.remark}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" id="submitbutton" class="btn">Create</button>
+    </form>
+    {% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const msg = "{{message}}";
+        swal("Good Job!",msg,"success");
+        const submitButton = document.getElementById("submitbutton")
+    </script>
+    {% endfor %}
+
+{% endblock content %}
+
+{% block jslinks %}
+
+
+<script>
+    const submitButton = document.getElementById("submitbutton")
+</script>
+
+
+{% endblock jslinks %}

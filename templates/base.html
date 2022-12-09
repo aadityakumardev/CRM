@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/navstyle.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/utils.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% comment %} <title>navbar</title> {% endcomment %}
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    {% block csslinks %}  {% endblock csslinks %}
+    {% block title %}  <title>www.cctvserv.com/product-management</title> {% endblock title %}
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="nav-brand">
+                <span>brand and logo.........</span>
+            </div>
+            <div class="navigation">
+                <ul>
+                    <li><a href="{% url 'main:index' %}">  Dashboard </a></li>
+                    <li>
+                        <a href="#"> Service  <span>	&#9662; </span> </a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href=""> Repair <span>&#9656;</span> </a>
+                                <ul class="subdropdown">
+                                    <li><a href="{% url 'main:newservice' %}"> Apply </a></li>
+                                    <li><a href="#"> Inquire </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href=""> Order <span>&#9656;</span></a>
+                                <ul class="subdropdown">
+                                    <li><a href="#"> Apply </a></li>
+                                    <li><a href="#"> Inquire </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href=""> Lorem <span>&#9656;</span></a>
+                                <ul class="subdropdown">
+                                    <li><a href="#"> Lorem ipsum </a></li>
+                                    <li><a href="#"> Lorem ipsum </a></li>
+                                    <li><a href="#"> Lorem ipsum </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'main:inventory' %}">  Inventory </a></li>
+                    <li><a href="{% url 'main:closedloglist' %}">  Service Logs </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-profile">
+                <span><a href="{% url 'main:userlogout' %}">Logout</a></span>
+            </div>
+        </div>
+    </nav>
+
+
+    {% block content %}{% endblock content %}
+
+    {% block detailtabs %}{% endblock detailtabs %}
+
+    {% block jslinks %}{% endblock jslinks %}
+</body>
+</html>

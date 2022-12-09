@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block csslinks %}
+    <link rel="stylesheet" href="{% static 'css/engineerinspection.css' %}">
+{% endblock csslinks %}
+{% block content %}
+
+
+<div class="screen-box2"><div class="loader"></div></div>
+
+<!-- POPUP WINDOW TO ADD SEARCH FOR PRODUCT FORM SERVER -->
+<div class="screen-box">
+    <div class="center-container">
+        <div class="content">
+            <div class="form-area">
+                <div class="flex">
+
+                    <div class="wrapper">
+                        <input type="text" id="searchinput" autocomplete="off" placeholder="partcode/model number/description">
+
+                        <!-- FILTERED PRODUCT LIST BOX  -->
+                        <div class="autocomplete-box"></div>
+                    </div> 
+
+                    <!-- POPUP WINDOW BUTTON AREA -->            
+                    <div class="button-area">
+                        <button id="popWindowSelectBtn" class="simple-btn">select</button>
+                        <button id="popWindowCancelBtn" class="simple-btn">cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- INFORMATION SECTION -->
+<div class="container">
+    <table class="detail-table">
+        <tr>
+            <th>service ID</th>
+            <td>{{service.sid}}</td>
+
+            <th>status</th>
+            <td>{{service.status}}</td>
+
+            <th>Creation Date/Time</th>
+            <td>{{service.timestamp}}</td>
+
+            <th>Engineers</th>
+            
+            <td>
+                {% for engineer in engineers_assigned %}
+                    <span>{{engineer.engineer_id}} | {{engineer.name}}</span>
+                    <br>
+                {% endfor %}
+            </td>
+            
+        </tr>
+        <tr>
+            <th>dummy</th>
+            <td>dummy</td>
+
+            <th>dummy</th>
+            <td>dummy</td>
+
+            <th>dummy</th>
+            <td>dummy</td>
+
+            <th>dummy</th>
+            <td>dummy</td>
+        </tr>
+    </table>
+</div>
+<br><br>
+
+<form id="productForm" action="" method="POST">
+    {% comment %} {% csrf_token %} {% endcomment %}
+    <div class="container">
+        <div class="assignbox">
+            <table class="assigntable">
+                <caption>Assign Another Engineer</caption>
+                <!-- SELECT Engineer FIELD -->
+                <tr>
+                    <th><label for="engineer">Engineer*</label></th>
+                    <td> 
+                        <select name="engineer" id="engineer">
+                            {% for eng in engineerlist %}
+                                {% if eng.is_available == True %}
+                                    <option value="{{eng.engineer_id}}">{{eng.name}} | Avaiable </option>
+                                {% endif %}
+                                {% if eng.is_available == False %}
+                                    <option value="{{eng.engineer_id}}" disabled>{{eng.name}} | Working </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- FORM FIELDS -->
+                <tr>
+                    <th>Product List</th>
+                    <td>
+                        <label for="partcode" >partcode/SN</label>
+                            <input type="text" name="partcode" id="partcode" autocomplete="off">
+                        <label for="decription">description</label>
+                            <input type="text" name="description" id="description" style="width:400px;" readonly>
+                        <label for="availableQuantity">Available Quantity</label>
+                        <input type="number" id="availablequantity" name="availablequantity" style="width:100px;">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" style="width:100px;">
+                        <button type="submit" id="formAddBtn" name="formAddBtn" class="simple-btn">Add</button>
+                    </td>
+                </tr>
+
+                <!-- DISPLAY LIST TABLE -->
+                <tr>
+                <th></th>
+                <td>
+                    <div class="container" style="overflow-y:auto; max-height:300px;max-width:1500px;" >
+                        <table width="100%" class='list_table'>
+                            <thead>
+                                <tr>
+                                    <th> PN </th>
+                                    <th> serial number</th>
+                                    <th> model number</th>
+                                    <th>description</th>
+                                    <th>price</th>
+                                    <th>quantity</th>
+                                    <th>total</th>
+                                    <th>operation</th>
+                                </tr>
+                            </thead>
+                            <tbody id="EngineerBagList"></tbody>
+                        </table>
+                    </div>
+                </td>
+                </tr>
+                
+                <!-- Remark -->
+                <tr>
+                    <th>Remark*</th>
+                    <td>
+                        <textarea name="remark" id="remark" cols="30" rows="5"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" name="determine" id="determineBtn" class="btn">determine</button>
+        </div>
+    </div>
+
+
+<div class="container">
+    <h3>Engieer Bag</h3>
+    <table width="100%" class='list_table'>
+        <thead>
+            <tr>
+                <th> PN </th>
+                <th> serial number</th>
+                <th> model number</th>
+                <th>description</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                        <tr>
+                            <td style="width:90px" >{{product.partcode.partcode}}</td>
+                            <td style="width:90px" >{{product.partcode.serialnumber}}</td>
+                            <td style="width:90px" >{{product.partcode.modelnumber}}</td>
+                            <td style="width:600px" >{{product.partcode.description}}</td>
+                            <td style="width:70px" >{{product.price}}</td>
+                            <td style="width:70px" >{{product.quantity}}</td>
+                            <td style="width:70px">{% widthratio product.price 1 product.quantity%}</td>
+                        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" name="rollback" id="rollback" class="btn" style="position:absolute;right:10px;margin:5px;">rollback</button>
+</div>
+
+<div class="container">
+    <h3>IN WARRANTY STOCK</h3>
+    <table width="100%" class='list_table'>
+        <thead>
+            <tr>
+                <th> PN </th>
+                <th> serial number</th>
+                <th> model number</th>
+                <th>description</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in inwarranty_used_stock %}
+                        <tr>
+                            <td style="width:90px" >{{product.partcode.partcode}}</td>
+                            <td style="width:90px" >{{product.partcode.serialnumber}}</td>
+                            <td style="width:90px" >{{product.partcode.modelnumber}}</td>
+                            <td style="width:600px" >{{product.partcode.description}}</td>
+                            <td style="width:70px" >{{product.price}}</td>
+                            <td style="width:70px" >{{product.quantity}}</td>
+                            <td style="width:70px">{% widthratio product.price 1 product.quantity%}</td>
+                        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" name="inwarranty_outbound" id="inwarranty_rollbackBtn" class="btn" style="position:absolute;right:10px;margin:5px;">apply</button>
+</div>
+
+
+<div class="container">
+    <h3>OUT WARRANTY STOCK</h3>
+    <table width="100%" class='list_table'>
+        <thead>
+            <tr>
+                <th> PN </th>
+                <th> serial number</th>
+                <th> model number</th>
+                <th>description</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in outwarranty_used_stock %}
+                        <tr>
+                            <td style="width:90px" >{{product.partcode.partcode}}</td>
+                            <td style="width:90px" >{{product.partcode.serialnumber}}</td>
+                            <td style="width:90px" >{{product.partcode.modelnumber}}</td>
+                            <td style="width:600px" >{{product.partcode.description}}</td>
+                            <td style="width:70px" >{{product.price}}</td>
+                            <td style="width:70px" >{{product.quantity}}</td>
+                            <td style="width:70px">{% widthratio product.price 1 product.quantity%}</td>
+                        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" name="outwarranty_outbound" id="outwarranty_rollbackBtn" class="btn" style="position:absolute;right:10px;margin:5px;">apply</button>
+</div>
+<button type="submit" name="proceed" id="proceedBtn">Proceed</button>
+</form>
+
+{% for message in messages %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    let msg = "{{message}}";
+    msgTag = "{{message.tags}}";
+    swal(msgTag.toUpperCase(),msg,msgTag);
+</script>
+{% endfor %}
+
+
+{% endblock content %}
+
+{% block jslinks %}
+<script defer src=" {% static 'js/engineerinspection.js' %} "></script>
+{% endblock jslinks %}

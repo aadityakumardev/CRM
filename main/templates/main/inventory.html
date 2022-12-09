@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th> Partcode </th>
+                    <th> Description </th>
+                    <th> Category </th>
+                    <th> Quantity </th>
+                    <th> Price </th>
+                    <th> CGST </th>
+                    <th> IGST </th>
+                    <th> MSRP </th>
+                    <th> Total </th>
+                    <th> Operation </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{product.productRef.partcode}}</td>
+                    <td style="width:500px" >{{ product.productRef.description }}</td>
+                    <td> -- </td>
+                    <td>{{ product.quantity }}</td>
+                    <td>₹ {{ product.price }}</td>
+                    <td> {{product.cgst}}% </td>
+                    <td> {{product.igst}}% </td>
+                    <td>₹ {{product.msrp}}</td>
+                    <td>₹ {{product.amount}}</td>
+                    <td> <a href=""> view </a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

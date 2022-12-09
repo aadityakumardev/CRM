@@ -1,0 +1,49 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.container{
+    margin: 20px;
+}
+
+
+h3{
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-family: monospace;
+}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid #dde9f5;
+    font-size: 11px;
+    
+}
+
+table td{
+    border-bottom: 1px solid #dde9f5;
+    text-align: center;
+    padding: 2px;
+    width: 100px;
+    font-family: monospace;
+}
+
+table th{
+    font-family: monospace;
+    text-align: center;
+    padding: 2px;
+    background-color: #cccccc; 
+}
+
+table td a{
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+#inValue{
+    position: absolute;
+    right: 315px;
+    font-family: var(--robotomonofont);
+    font-size: 13px;
+}

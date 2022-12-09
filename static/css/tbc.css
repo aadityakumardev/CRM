@@ -1,0 +1,40 @@
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #f0f0f0;
+    margin: 10px;
+}
+
+.form-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+textarea{
+    margin: 0px 5px;
+    resize: none;
+}
+
+.btn{
+
+    margin: 10px 20px;
+    right:0;
+    height: 30px;
+    border: none;
+    box-shadow:1px 1px 4px 3px #f0f0f0;
+    width: 80px;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+.button-wrapper{
+    position: absolute;
+    right: 10px;
+    margin: 10px;
+}
+
+th{
+    text-align: right;
+    padding-right: 10px;
+    font-weight: normal;
+}
+

@@ -1,0 +1,181 @@
+{% extends 'base.html' %} {% load static %} {% block csslinks %}
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
+/>
+<link rel="stylesheet" href="{% static 'css/style2.css' %}" />
+
+{% endblock csslinks %} {% block content %}
+
+<section>
+  <div class="main tbb_bypass_main">
+    <div class="container">
+      <div class="padiing_boder">
+        <div class="tbb_bypass_servies pending_Payment_out_main">
+          <label>Service Details* </label>
+          <table class="table tbb_bypass_servies_main pending_Payment_out">
+            <tbody>
+              <tr>
+                <td>Service ID :</td>
+                <td>{{log.serviceRef.sid}}</td>
+                <td>Log ID :</td>
+                <td>{{log.logId}}</td>
+                <td>Application time :</td>
+                <td>{{log.timestamp}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tbb_bypass_servies pending_Payment_out_main">
+          <label>User Details* </label>
+          <table
+            class="table tbb_bypass_servies_main pending_Payment_out pending_Payment_outtr"
+          >
+            <tbody>
+              <tr>
+                <td>Name :</td>
+                <td>{{log.cutomerId.name}}</td>
+                <td>Contact :</td>
+                <td>{{log.cutomerId.contact_number}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="service">
+    <div class="container-fluid">
+      <label style="font-size: 18px; color: #936b52; font-weight: 500"
+        >Out-Warranty Products</label
+      >
+      <table class="table main_sec_table warranty in_warranty">
+        <thead>
+          <tr class="service_sec service_sec2 ">
+            <th scope="col">Partcode</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Quantity </th>
+            <th scope="col">Price </th>
+            <th scope="col"> Serial Number (Old) </th>
+            <th scope="col"> Serial Number (New) </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for product in inproduct %}
+            <tr>
+                <td>{{product.productRef.partcode}}</td>
+                <td>I{{product.productRef.description}}</td>
+                <td>Camera </td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.productRef.price}}</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="container-fulid price_block">
+        <div class="row">
+          <div class="col-lg-10">
+            <p><b>Total Quantity : --</b></p>
+          </div>
+          <div class="col-lg-2 Price1">
+            <p><b>Amount: --</b></p>
+          </div>
+        </div>
+      </div>
+      <label style="font-size: 18px;color: #936b52;font-weight: 500;" >Out-Warranty Products</label>
+      <table class="table main_sec_table warranty">
+        <thead>
+          <tr class="service_sec service_sec2">
+            <th scope="col">Partcode</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">CGST</th>
+            <th scope="col">IGST</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for product in outproduct %}
+            <tr>
+                <td>{{product.productRef.partcode}}</td>
+                <td>
+                {{product.productRef.description}}
+                </td>
+                <td>Camera</td>
+                <td>--</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.productRef.price}}</td>
+                <td>9%</td>
+                <td>9%</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="container-fulid price_block">
+        <div class="row">
+          <div class="col-lg-10">
+            <p><b>Total Quantity : --</b></p>
+          </div>
+          <div class="col-lg-2 Price1">
+            <p><b>Amount: --</b></p>
+          </div>
+        </div>
+      </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-lg-1">
+          <div class="form-group remark">
+            <label>Remark</label>
+            <span class="star_sec"></span>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <textarea
+            id="remark"
+            name="remark"
+            rows="8"
+            cols="5"
+            class="form-control validateError"
+            style="
+            padding:2px;
+              margin: 0px 0px 0px 0px;
+              height: 80px !important;
+              width: 300px !important;
+              margin-top: 30px;
+            "
+            placeholder=""
+            onblur="validateMessage()"
+          ></textarea>
+        </div>
+        <div class="col-sm-12 btn-set-contact">
+          <button type="submit" name="closelog" id="closelog">Close Log</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</section>
+
+
+
+{% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const msg = "{{message}}";
+        swal("Successfull!",msg,"success");
+    </script>
+    {% endfor %}
+
+{% endblock content %}

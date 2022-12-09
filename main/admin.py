@@ -1,0 +1,20 @@
+from django.contrib import admin
+from .models import (ComingStock, ComingStockLog, Customer, Service, Product, Inventory, 
+Engineer, EngineerBag, PaymentRecord, PendingForOutbound, PendingForInbound, OutboundStock, StockPayment,StockPaymentHandler,
+OutboundStockHandler,ClosedLog)
+admin.site.register(Customer)
+admin.site.register(Service)
+admin.site.register(Product)
+admin.site.register(Inventory)
+admin.site.register(Engineer)
+admin.site.register(EngineerBag)
+admin.site.register(ComingStock)
+admin.site.register(ComingStockLog)
+admin.site.register(PaymentRecord)
+admin.site.register(PendingForInbound)
+admin.site.register(PendingForOutbound)
+admin.site.register(OutboundStock)
+admin.site.register(StockPayment)
+admin.site.register(StockPaymentHandler)
+admin.site.register(OutboundStockHandler)
+admin.site.register(ClosedLog)

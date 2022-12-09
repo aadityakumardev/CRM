@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th> agency ID </th>
+                    <th> date/time </th>
+                    <th> service ID </th>
+                    <th> Type </th>
+                    <th> cusomter name </th>
+                    <th> contact number </th>
+                    <th> compain </th>
+                    <th> operation </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pfo in pfo_list %}
+                <tr>
+                    <td>{{pfo.isid}}</td>
+                    <td>{{pfo.timestamp}}</td>
+                    <td>{{pfo.serviceRef}}</td>
+                    <td>{{pfo.serviceRef.service_type}}</td>
+                    <td>{{pfo.serviceRef.customer_id.name}}</td>
+                    <td>{{pfo.serviceRef.customer_id.contact_number}}</td>
+                    <td>{{pfo.serviceRef.complain}}</td>
+                    <td> <a href="{% url 'main:pendingforoutbound' isid=pfo.isid%}">dealwith</a> </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

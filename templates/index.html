@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block csslinks %}
+
+<link rel="stylesheet" href="{% static 'css/allocatestyle.css' %}">
+{% endblock csslinks %}
+
+{% block content %}
+    <div class="container">
+
+<!-- Allocate starts here  -->
+        <h3>Service</h3>
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th>Case</th>
+                    <th> Pending Cases</th>
+                    <th> Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TBC</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:tbclist' %}">view</a> </td>
+                </tr>
+                <tr>
+                    <td>TBB</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:tbblist' %}">view</a> </td>
+                </tr>
+                <tr>
+                    <td>Engineer Inspection</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:inspection_list' %} ">view</a> </td>
+                </tr>
+                <tr>
+                    <td>Pending For payment</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:pfplist' %}">view</a> </td>
+                </tr>
+                <tr>
+                    <td>TBD</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:tbdlist' %}">view</a> </td>
+                </tr>
+            </tbody>
+        </table>
+<!-- Allocate ends here  -->
+
+<!-- PFO starts here -->
+
+<h3>PFO</h3>
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th>Case</th>
+                    <th> Pending Cases</th>
+                    <th> Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending For Outbound-IW</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:inpfolist' %}">view</a> </td>
+                </tr>
+                <tr>
+                    <td>Pending For Outbound-OOW</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:pfolist' %}">view</a> </td>
+                </tr>
+            </tbody>
+        </table>
+
+<!-- PFO ends here -->
+
+<!-- Pending Inventory starts here  -->
+        <h3>PFI</h3>
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th>Case</th>
+                    <th> Pending Cases</th>
+                    <th> Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending For Inbound</td>
+                    <td>1</td>
+                    <td> <a href="{% url 'main:pending_inbound' %}">view</a> </td>
+                </tr>
+                <tr>
+                    <td>Pending For Inventory-IW</td>
+                    <td>1</td>
+                    <td> <a href="#">view</a> </td>
+                </tr>
+                <tr>
+                    <td>Pending For Inventory-OOW</td>
+                    <td>1</td>
+                    <td> <a href="#">view</a> </td>
+                </tr>
+            </tbody>
+        </table>
+<!-- Pending Inventory ends here  -->
+
+
+<!--  Track Inventory starts here  -->
+        <h3>Track Inventory Value</h3>
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th> Case </th>
+                    <th> Pending Cases</th>
+                    <th> Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending For Inventory-OOW</td>
+                    <td>1</td>
+                    <td> <a href="">view</a> </td>
+                </tr>
+            </tbody>
+        </table>
+<!--  Track Inventory ends here  -->
+
+<!--  Consumption Parameter starts here  -->
+        {% comment %} <h3>Consumption Parameter</h3>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th> Part Code </th>
+                    <th> Description </th>
+                    <th> W/H Stock Quantity </th>
+                    <th> Available Quantity </th>
+                    <th> Sold Quantity </th>
+                    <th> Sold Value </th>
+                    <th> Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> CD20105858 </td>
+                    <td>
+                        Cp Plus Camera CP-VAC-D10L2-V2 HD Color Image Sensor
+                        DOME 1 MP Camera IR Range of 20 Mtr.  720P-Resolution
+                     </td>
+                    <td> 50 </td>
+                    <td> 10 </td>
+                    <td> 5 </td>
+                    <td> &#8377; 3875.00 </td>
+                    <td> <a href="">view</a> </td>
+                </tr>
+                <tr>
+                    <td> CD20105859 </td>
+                    <td>
+                        Cp Plus Camera CP-VAC-D10L2-V2 HD Color Image Sensor
+                        DOME 1 MP Camera IR Range of 20 Mtr.  720P-Resolution
+                     </td>
+                    <td> 50 </td>
+                    <td> 10 </td>
+                    <td> 5 </td>
+                    <td> &#8377; 3875.00 </td>
+                    <td> <a href="">view</a> </td>
+                </tr>
+                <tr>
+                    <td> CD20105860 </td>
+                    <td>
+                        Cp Plus Camera CP-VAC-D10L2-V2 HD Color Image Sensor
+                        DOME 1 MP Camera IR Range of 20 Mtr.  720P-Resolution
+                     </td>
+                    <td> 50 </td>
+                    <td> 10 </td>
+                    <td> 5 </td>
+                    <td> &#8377; 3875.00 </td>
+                    <td> <a href="">view</a> </td>
+                </tr>
+                <tr>
+                    <td> CD20105861 </td>
+                    <td>
+                        Cp Plus Camera CP-VAC-D10L2-V2 HD Color Image Sensor
+                        DOME 1 MP Camera IR Range of 20 Mtr.  720P-Resolution
+                     </td>
+                    <td> 50 </td>
+                    <td> 10 </td>
+                    <td> 5 </td>
+                    <td> &#8377; 3875.00 </td>
+                    <td> <a href="">view</a> </td>
+                </tr>
+            </tbody>
+        </table> {% endcomment %}
+<!--  Consumption Parameter ends here  -->
+{% endblock content %}

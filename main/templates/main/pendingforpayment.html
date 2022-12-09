@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block csslinks %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" />
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+{% endblock csslinks %}
+
+{% block content %}
+
+<section>
+    <div class="main tbb_bypass_main">
+      <div class="container-b">
+        <div class="tbb_bypass">
+          <p>
+            Pending For Payment - In Warranty
+          </p>
+        </div>
+        <div class="padiing_boder">
+          <div class="tbb_bypass_servies pending_Payment_out_main">
+            <label>Service Details* </label>
+            <table class="table tbb_bypass_servies_main pending_Payment_out">
+              <tbody>
+                <tr>
+                  <td>Service ID :</td>
+                  <td>{{service.sid}}</td>
+                  <td>Order ID :</td>
+                  <td>465SAGD7A</td>
+                  <td>Time :</td>
+                  <td>{{service.timestamp}}</td>
+                  <td>Status :</td>
+                  <td>Pending For Payment</td>
+                  <td> Type</td>
+                  <td>{{service.service_type}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbb_bypass_servies pending_Payment_out_main">
+            <label>User Details* </label>
+            <table class="table tbb_bypass_servies_main pending_Payment_out pending_Payment_outtr">
+              <tbody>
+                <tr>
+                  <td>Name :</td>
+                  <td>{{service.customer_id.name}}</td>
+                  <td>Contact :</td>
+                  <td>{{service.customer_id.contact_number}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="service">
+      <div class="container-fluid">
+        <table class="table main_sec_table warranty in_warranty">
+          <thead>
+            <tr class="service_sec service_sec2 ">
+              <th scope="col">Partcode</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col">Quantity </th>
+              <th scope="col">Price </th>
+              <th scope="col"> Serial Number (Old) </th>
+              <th scope="col"> Serial Number (New) </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <td>{{product.productRef.partcode}}</td>
+              <td>{{product.productRef.description}}</td>
+              <td>Camera </td>
+              <td>{{product.quantity}}</td>
+              <td>{{product.productRef.price}}</td>
+              <td>A498494DF8B4F894B98</td>
+              <td>A498494DF8B4F894B98</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="container-fulid">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="gst_sec">
+                <ul>
+                  <li>Maintenance and Labour Fees *</li>
+                  <li>CGST</li>
+                  <li>SGST </li>
+                  <li>Amount</li>
+                  <li>Total</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="gst_sec gst_price">
+                <ul>
+                  <li>249</li>
+                  <li>9%</li>
+                  <li>9% </li>
+                  <li>₹ 44.82 </li>
+                  <li>₹ 293.82</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+  <form action="" method="POST">
+    {% csrf_token %}
+        <div class="row">
+          <div class="col-lg-1">
+            <div class="form-group remark">
+              <label>Remark</label>
+              <span class="star_sec"></span>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <textarea id="message" name="message" rows="8" cols="5" class="form-control validateError" style="    margin: 0px 0px 0px 0px;
+                            height: 100px !important;
+                            margin-top: 30px;" placeholder="" onblur="validateMessage()"></textarea>
+          </div>
+          <div class="col-lg-4">
+            <div class="gst_sec total_gst">
+              <ul>
+                <li><b>Total Quantity :10</b> </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 btn-set-contact">
+            <input type="submit" value="Determine" id="determine" name="determine">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </section>
+
+
+  {% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const msg = "{{message}}";
+        swal("Successfull!",msg,"success");
+    </script>
+    {% endfor %}
+
+{% endblock content %}

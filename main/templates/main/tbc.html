@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslinks %}
+<link rel="stylesheet" href="{% static 'css/tbc.css' %}">
+{% endblock csslinks %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="wrapper">   
+        <div class="container">
+            <table width="100%"  class="info-table">
+                <tr>
+                    <th> Service ID : </th>
+                    <td> {{service.sid}} </td>
+                </tr>
+                <tr>
+                    <th> Date/time : </th>
+                    <td> {{service.timestamp}} </td>
+                </tr>
+                <tr>
+                    <th> Customer Name : </th>
+                    <td> {{service.customer_id.name}} </td>
+                </tr>
+                <tr>
+                    <th> Contact Number : </th>
+                    <td> {{service.customer_id.contact_number}} </td>
+                </tr>
+                <tr>
+                    <th> Service Address : </th>
+                    <td> {{service.customer_id.address}},{{service.customer_id.city}},{{service.customer_id.State}},{{service.customer_id.pincode}} </td>
+                </tr>
+                <tr>
+                    <th> Complain : </th>
+                    <td> {{service.complain}} </td>
+                </tr>
+                <tr>
+                    <th> Remark : </th>
+                    <td> {{service.remark}} </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        <div class="container">
+            <div class="form-wrapper">
+                <label for="specialremark">*special remark</label>
+                <textarea name="specialremark" id="specialremark" cols="33" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="button-wrapper">
+            <button type="submit" class="btn" name="accept">Accept</button>
+            <button type="submit" class="btn" name="decline">Decline</button>
+        </div>
+</form>
+
+{% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const msg = "{{message}}";
+        swal("Successfull!",msg,"success");
+    </script>
+{% endfor %}
+
+{% endblock content %}
+

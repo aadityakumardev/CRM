@@ -1,0 +1,228 @@
+.detail-table{
+    width: 100%;
+    /* border: 1px solid #36486b; */
+    border-collapse: collapse;
+    margin: 5px 0px;
+}
+
+.detail-table caption{
+    text-align: left;
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 5px 10px;
+
+}
+
+.detail-table tr,th,td{
+    border: 1px solid #b7d7e8;
+}
+
+.assigntable caption{
+    text-align: left;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 10px;
+
+}
+
+.detail-table th{
+    text-align: right;
+    padding: 0px 5px;
+    width: 150px;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #c0ded9;
+    background-color: #d5f4e6;
+}
+
+.detail-table td{
+    border: 1px solid #c0ded9;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font: 200;
+    font-size: 13px;
+}
+
+.assignbox{
+    /* height: auto;
+    width: auto; */
+    background-color: #f5f5f5;
+    padding: 5px;;
+    position: relative;
+}
+
+.assigntable{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px 0px;
+    
+}
+
+.assigntable th{
+    text-align: right;
+    padding: 0px 5px;
+    width: 150px;
+    height: 40px;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #c0ded9;
+}
+
+.assigntable label,input{
+    margin: 0px 5px;
+}
+
+.simple-btn{
+    width: 60px;
+    height: 25px;
+}
+
+.productlisttable{
+    width: 80%;
+    border-collapse: collapse;
+    margin: 5px 0px;
+}
+
+.list_table td{
+    padding: 5px;
+    text-align: center;
+}
+.list_table th{
+    text-align: center;
+    height: 15px;
+}
+.list_table a {
+    text-decoration: none;
+    color: indianred;
+}
+
+select{
+    padding: 4px 4px;
+    border: 1px solid #626161d2;
+    border-radius: 4px;
+    width: 250px;
+    height: 25px;
+    margin: 10px 5px;
+}
+
+input[type=text]{
+    border: 1px solid #626161d2;
+}
+input[type=number]{
+    border: 1px solid #626161d2;
+    border-radius: 4px;
+    height: 25px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea {
+    margin: 5px 5px;
+    resize: none;
+}
+
+
+
+.screen-box{
+    position: absolute;
+    height: 95%;
+    width: 100%;
+    background-color: rgb(249, 251, 251,.3);
+    overflow: hidden;
+    z-index: 2;
+    display: none;
+}
+.screen-box2{
+    position: absolute;
+    height: 95%;
+    width: 100%;
+    background-color: rgb(249, 251, 251,.3);
+    overflow: hidden;
+    z-index: 2;
+    display: none;
+}
+
+.autocomplete-box{
+    width: 500px;
+    max-height: 200px;
+    background-color: white;
+    margin: 0px 5px;
+    overflow-y: auto;
+    display: none;
+}
+.autocomplete-box li{
+    list-style: none;
+    height: auto;
+    width: 462px;
+    padding: 5px 10px;
+    border-bottom: .5px solid gray;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    pointer-events: auto;
+
+}
+
+.autocomplete-box li:hover{
+    background-color: lightslategray;
+    cursor: pointer;
+}
+
+
+.center-container{
+    background-color: whitesmoke;
+    width: 700px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.loader {
+    position: absolute;
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #555; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .form-area input[type=text]{
+    width: 500px;
+    height: 20px;
+}
+
+/* .btn{
+    position: absolute;
+    margin: 10px 20px;
+    right: 0px;
+    height: 25px;
+    border: none;
+    box-shadow:1px 1px 4px 3px #f0f0f0;
+    width: 70px;
+    cursor: pointer;
+    background-color: #b0afafd2;
+    border-radius: 5px;
+} */

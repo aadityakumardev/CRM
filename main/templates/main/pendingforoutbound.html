@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block csslinks %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" />
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+{% endblock csslinks %}
+
+{% block content %}
+
+<section>
+    <div class="main tbb_bypass_main">
+      <div class="container">
+        <div class="tbb_bypass">
+          <p>
+            PFO - Out Warranty
+          </p>
+        </div>
+        <div class="tbb_bypass_servies">
+          <label>Service Details* </label>
+        </div>
+        <table class="table tbb_bypass_servies_main">
+          <tbody>
+            <tr>
+              <td>PFO ID :</td>
+              <td>{{stock.shid}}</td>
+              <td>Service ID :</td>
+              <td>{{service.sid}}</td>
+              <td>Application Time :</td>
+              <td>{{service.timestamp}}</td>
+              <td>Outbound Type :</td>
+              <td>{{service.service_type}}</td>
+              <td>Status :</td>
+              <td> Pending Outbound</td>
+              <td><a href="#">view</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="service">
+      <div class="container-fluid">
+        <table class="table main_sec_table warranty ">
+          <thead>
+            <tr class="service_sec service_sec2 ">
+              <th scope="col">Partcode</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col"> Serial Number </th>
+              <th scope="col">Quantity </th>
+              <th scope="col">Price </th>
+              <th scope="col">CGST</th>
+              <th scope="col">IGST</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <td>{{product.productRef.partcode}}</td>
+              <td>{{product.productRef.description}}</td>
+              <td>Camera </td>
+              <td>A498494DF8B4F894B98</td>
+              <td>{{product.quantity}}</td>
+              <td>{{product.productRef.price}}</td>
+              <td>9%</td>
+              <td>9%</td>
+              <td>431.82</td>
+              <td>2830.82</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="container-fulid price_block">
+          <div class="row">
+            <div class="col-lg-10">
+              <p><b>Total Quantity : 100</b></p>
+            </div>
+            <div class="col-lg-2 Price1">
+              <p><strong>Amount: 239900</strong></p>
+            </div>
+          </div>
+        </div>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-1">
+            <div class="form-group remark">
+              <label>Remark</label>
+              <span class="star_sec"></span>
+            </div>
+
+          </div>
+          <div class="col-lg-6">
+            <textarea id="message" name="message" rows="8" cols="5" class="form-control validateError" style="    margin: 0px 0px 0px 0px;
+                            height: 100px !important;
+                            margin-top: 30px;" placeholder="" onblur="validateMessage()"></textarea>
+          </div>
+          <div class="col-sm-12 btn-set-contact">
+            <button type="submit" name='determine' id='determine'>determine</button>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </section>
+
+
+  {% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const msg = "{{message}}";
+        swal("Successfull!",msg,"success");
+    </script>
+    {% endfor %}
+
+{% endblock content %}

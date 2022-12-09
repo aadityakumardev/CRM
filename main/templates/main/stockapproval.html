@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th> agency ID </th>
+                    <th> date/time </th>
+                    <th> service ID </th>
+                    <th> Type </th>
+                    <th> cusomter name </th>
+                    <th> contact number </th>
+                    <th> compain </th>
+                    <th> operation </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inspec in in_list %}
+                <tr>
+                    <td>USER0001</td>
+                    <td>{{inspec.timestamp}}</td>
+                    <td>{{inspec.sid}}</td>
+                    <td>{{inspec.service_type}}</td>
+                    <td>{{inspec.customer_id.name}}</td>
+                    <td>{{inspec.customer_id.contact_number}}</td>
+                    <td>{{inspec.complain}}</td>
+                    <td> <a href="{% url 'main:engineerinspection' sid=inspec.sid%}">dealwith</a> </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+:root{
+    --main-bg-color:brown;
+    --font1: 'roboto ',sans-serif;
+    --font2: 'poppins',sans-serif;
+    --notofont: 'noto sans',roboto;
+    --robotomonofont: 'roboto mono',sans-serif;
+}
+
+
+#Value{
+    position: absolute;
+    right: 315px;
+    font-family: var(--robotomonofont);
+    font-size: 13px;
+}
+
+.flex-container{
+    display: flex;
+}
+
+.container{
+    margin:10px
+}
+
+.list_table{
+    border-collapse: collapse;
+    border: 1px solid #dde9f5;
+}
+.list_table th{
+    font-family: monospace;
+    text-align: left;
+    padding: 2px;
+    background-color: #cccccc; 
+}
+
+.list_table td{
+    border-bottom: 1px solid #dde9f5;
+    text-align: left;
+    padding: 2px;
+    width: 100px;
+    font-family: monospace;
+}
+
+.list_table a{
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+.info-table{
+    /* border: 1px solid #dde9f5; */
+    border-collapse: collapse;
+    border-radius: 4px;
+}
+
+.info-table th{
+    /* border: 1px solid #dde9f5; */
+    text-align: right;
+    font-family: monospace;
+    font-size: 14px;
+    padding: 10px;
+    
+}
+
+.info-table td{
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.info-table tr{
+    /* border: 1px solid #dde9f5; */
+    border-radius: 4px;
+}
+
+.flex{
+    display:flex;
+    justify-content: space-around;
+}

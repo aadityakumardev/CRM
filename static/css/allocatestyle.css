@@ -1,0 +1,14 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.container{
+    margin: 20px;
+}
+
+h3{
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-family: monospace;
+}

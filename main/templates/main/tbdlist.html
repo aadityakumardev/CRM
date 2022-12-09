@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <table width="100%" class='list_table'>
+            <thead>
+                <tr>
+                    <th>Log ID</th>
+                    <th>date/time</th>
+                    <th>service ID</th>
+                    <th>Customer Name</th>
+                    <th>Cusomter Phone</th>
+                    <th>Complain</th>
+                    <th>operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{log.logId}}</td>
+                    <td>{{log.timestamp}}</td>
+                    <td>{{log.serviceRef}}</td>
+                    <td>{{log.cutomerId.name}}</td>
+                    <td>{{log.cutomerId.contact_number}}</td>
+                    <td>{{log.serviceRef.complain}}</td>
+                    <td> <a href=" {% url 'main:tbd' logid=log.logId %} ">dealwith</a> </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
